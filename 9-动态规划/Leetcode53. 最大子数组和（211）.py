@@ -3,7 +3,7 @@
 @Date: 2022/5/25  10:40
 @github: https://github.com/HuKai97
 """
-# 动态规划
+# 9-动态规划
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         if len(nums) == 0: return 0
