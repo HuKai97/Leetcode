@@ -3,6 +3,7 @@
 @Date: 2022/5/26  11:25
 @github: https://github.com/HuKai97
 """
+# 找左边界
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         # 异常判断
@@ -23,7 +24,7 @@ class Solution:
         # 退出循环，要么找到，要么没找到，如果找到的话，left和right都指向它了
         return left if nums[left] == target else -1
 
-
+# 找右边界
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         # 异常判断
