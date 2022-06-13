@@ -4,6 +4,8 @@
 @github: https://github.com/HuKai97
 """
 # 1、堆排序
+# 1、完全二叉树  2、父节点大于子节点
+# https://www.bilibili.com/video/BV1Eb41147dK?spm_id_from=333.337.search-card.all.click
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
         def heapify(tree, n, i):  # tree[i]为根节点的子树进行堆排序
@@ -26,8 +28,8 @@ class Solution:
         def heap_sort(tree, n):
             build_heap(tree, n)
             for i in range(n-1, -1, -1):
-                tree[i], tree[0] = tree[0], tree[i]
-                heapify(tree, i, 0)
+                tree[i], tree[0] = tree[0], tree[i]  # 把最大值放到最后
+                heapify(tree, i, 0)   # 从根节点开始heapify 但是个数为n-1
         heap_sort(nums, len(nums))
         return nums
 

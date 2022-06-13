@@ -10,7 +10,7 @@ class ListNode:
         self.next = next
 class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:
-        dummy = ListNode(-1, head)
+        dummy = ListNode(-101, head)
         pre, cur = dummy, head
         while cur and cur.next:
             if cur.val == cur.next.val:
