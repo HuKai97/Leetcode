@@ -1,6 +1,6 @@
 class Solution:
     def restoreIpAddresses(self, s: str) -> List[str]:
-        if len(s) > 12 or len(s) < 4 or len(s) == 0: return []
+        if len(s) > 12 or len(s) < 4: return []
         def isMeeting(patch):
             # 长度不能小于1或者大于3
             if len(patch) < 1 or len(patch) > 3: return False
