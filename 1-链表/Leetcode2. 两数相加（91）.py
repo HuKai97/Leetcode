@@ -18,7 +18,7 @@ class Solution:
             p.val += q.val
             rear = p
             p, q = p.next, q.next
-        if q: rear.next = q
+        if q: rear.next = q   # 这里必须要用dummy 因为需要这个rear指针，如果p为空 就找不到了
         # 下面考虑进位
         pre, cur = dummy.next, dummy.next.next
         while cur:

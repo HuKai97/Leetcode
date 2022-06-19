@@ -10,7 +10,7 @@ class Solution:
         slow, fast = head, head
         while fast and fast.next:
             fast = fast.next.next
-            temp = slow.next
+            temp = slow.next  # 头插法将前半部分逆序
             slow.next = dummy.next
             dummy.next = slow
             slow = temp

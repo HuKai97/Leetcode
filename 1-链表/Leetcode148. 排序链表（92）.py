@@ -10,6 +10,7 @@ class ListNode:
         self.next = next
 class Solution:
     def merge(self, head1, head2):
+        # 合并两个有序链表
         dummy = ListNode(-1)
         rear = dummy
         p, q = head1, head2
