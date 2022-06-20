@@ -17,6 +17,7 @@ class Solution:
             if not node: return
             if not node.left and not node.right:
                 res += path_sum * 10 + node.val
+                return
             dfs(node.left, path_sum*10+node.val)
             dfs(node.right, path_sum*10+node.val)
         dfs(root, 0)

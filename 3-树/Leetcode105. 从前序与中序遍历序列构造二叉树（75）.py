@@ -1,37 +1,14 @@
-"""
-@Author: HuKai
-@Date: 2022/6/1  10:34
-@github: https://github.com/HuKai97
-"""
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        # 一、递归
-        if not root: return []
-        res = []
-        def dfs(root):
-            nonlocal res
-            if not root: return
-            res.append(root.val)
-            dfs(root.left)
-            dfs(root.right)
-        dfs(root)
-        return res
-
-        # 二、迭代
-        if not root: return []
-        res = []
-        stack, cur = [], root
-        while stack or cur:
-            while cur:
-                res.append(cur.val)
-                stack.append(cur)
-                cur = cur.left
-            cur = stack.pop()
-            cur = cur.right
-        return res
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        if not preorder or not inorder: return 
+        root = TreeNode(preorder[0])
+        idx = inorder.index(preorder[0])
+        root.left = self.buildTree(preorder[1:idx+1], inorder[:idx])
+        root.right =self.buildTree(preorder[idx+1:], inorder[idx+1:])
+        return root

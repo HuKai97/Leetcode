@@ -4,12 +4,15 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+# 前序后序都可以
 class Solution:
     def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root: return None
         def dfs(node):
             if not node: return
-            left = dfs(node.left)
-            right = dfs(node.right)
+            # node.left, node.right = node.right, node.left
+            dfs(node.left)
+            dfs(node.right)
             node.left, node.right = node.right, node.left
-            return node
-        return dfs(root)
+        dfs(root)
+        return root
