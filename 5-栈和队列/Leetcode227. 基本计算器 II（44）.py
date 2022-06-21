@@ -8,7 +8,7 @@ class Solution:
         for i in range(len(s)):
             if '0' <= s[i] <= '9':
                 cur_num = cur_num * 10 + int(s[i])
-            if (s[i] != ' ' and (s[i]<'0' or s[i]>'9')) or (i == len(s)-1):
+            if s[i] in '+-*/' or (i == len(s)-1):
                 if pre_op == '+':
                     stack.append(cur_num)
                 elif pre_op == '-':
@@ -16,7 +16,7 @@ class Solution:
                 elif pre_op == '*':
                     top = stack.pop()
                     stack.append(top * cur_num)
-                elif pre_op == '/':
+                else:    # pre_op == '/'
                     top = stack.pop()
                     stack.append(int(top/cur_num))
                 cur_num = 0

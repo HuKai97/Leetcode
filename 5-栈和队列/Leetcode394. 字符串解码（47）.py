@@ -1,5 +1,6 @@
 class Solution:
     def decodeString(self, s: str) -> str:
+        if not s: return ''
         stack = []
         mutli = 0
         res = ''
