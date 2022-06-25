@@ -21,4 +21,5 @@ class Solution:
             add = cur_sum // 10
             i -= 1
             j -= 1
+        # 从后往前append的 所以要-1
         return ''.join(res[::-1])

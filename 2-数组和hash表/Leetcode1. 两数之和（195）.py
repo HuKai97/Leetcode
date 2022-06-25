@@ -13,3 +13,14 @@ class Solution:
             if target - nums[i] in mapp:
                 return [i, mapp[target - nums[i]]]
             mapp[nums[i]] = i
+
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        if not nums: return [-1, -1]
+        mapp = []
+        for i in range(len(nums)):
+            if target - nums[i] in mapp:
+                return [i, mapp.index(target-nums[i])]
+            mapp.append(nums[i])
+        return [-1, -1]
