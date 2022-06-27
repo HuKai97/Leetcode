@@ -8,6 +8,7 @@ class Solution:
         while i >= 0 and nums[i+1] <= nums[i]:
             i -= 1
         # 从后往前 找到第一个比nums[i]大的数
+        # 23541 -> 24531    23451 -> 23541
         if i >= 0:
             j = len(nums) - 1
             while j >= 0 and nums[j] <= nums[i]:
