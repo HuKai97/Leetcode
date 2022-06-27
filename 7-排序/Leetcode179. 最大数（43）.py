@@ -18,6 +18,7 @@ class Solution:
         nums = list(map(str, nums))  # [10, 2] -> ['10', '2']
         quick_sort(nums, 0, len(nums)-1)
         non_zero_location = 0
+        # len(nums) - 1  至少还是要保留一位的  比如'00'最终输出'0'
         while non_zero_location < len(nums) - 1 and nums[non_zero_location] == '0':
             non_zero_location += 1
         return ''.join(nums[non_zero_location:])
