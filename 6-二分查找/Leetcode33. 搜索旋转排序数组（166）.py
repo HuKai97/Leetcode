@@ -10,15 +10,15 @@ class Solution:
         while left <= right:
             mid = left + (right - left) // 2
             if nums[mid] == target: return mid
-            elif nums[mid] > nums[right]:
-                # 说明左边有序   不用考虑target和nums[mid]的情况
-                if nums[left] <= target and target < nums[mid]:
+            # 说明左边有序
+            if nums[mid] > nums[right]:  # 关于旋转数组问题 都先比较nums[mid]>nums[right]的情况
+                if nums[left] <= target < nums[mid]:
                     right = mid - 1
                 else:
                     left = mid + 1
+            # 说明右边有序
             else:
-                # 说明右边有序
-                if nums[mid] < target and target <= nums[right]:
+                if nums[mid] < target <= nums[right]:
                     left = mid + 1
                 else:
                     right = mid - 1

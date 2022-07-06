@@ -19,11 +19,12 @@ class Solution:
         # 二、二分查找  O(log(n))
         # 这道题之所以可以用二分 主要是因为nms[-1] = nums[n] = -∞
         # 视频讲解：https://www.bilibili.com/video/BV1BU4y1T7ri?spm_id_from=333.337.search-card.all.click&vd_source=5f6bbc1038b075757cb446f800f3cd56
+        if len(nums) == 1: return 0
         left, right = 0, len(nums) - 1
         while left < right:
             mid = left + (right - left) // 2
-            if nums[mid] < nums[mid + 1]:
+            if nums[mid] < nums[mid + 1]:  # mid->mid+1递增趋势  但是nums[n]=-∞  那么在右边肯定有一个峰值
                 left = mid + 1
-            else:
+            else:  # 否则 峰值元素在左边
                 right = mid
         return left

@@ -1,19 +1,18 @@
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
-        # # 一、贪心 O(n)
         if len(nums) < 2: return 0
-        res = []
+        res = []  # 存放所有极大值
+        # 找极大值  pre>0  cur<0
         pre, cur = 0, 0
         for i in range(1, len(nums)):
             cur = nums[i] - nums[i-1]
-            # >= 0是因为考虑到index=0
-            if cur < 0 and pre >= 0:  # 找到所有的极大值
+            if i == 1 and cur < 0: res.append(0)  # 判断第一个元素是不是极大值
+            if cur < 0 and pre > 0:  # 找到[1~n-1]所有的极大值
                 res.append(i-1)
-            # if cur > 0 and pre < 0:   # 找到所有的极小值
+            # if cur > 0 and pre < 0:  # 找到[1~n-1]所有的极小值
             #     res.append(i-1)
             pre = cur
-        # 这里是考虑到index=len(nums)-1
-        if cur > 0: res.append(len(nums)-1)
+        if cur > 0: res.append(len(nums) - 1)  # 判断最后一个元素是不是极大值
         return res[0]
 
         # 二、二分查找  O(log(n))
