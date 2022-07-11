@@ -37,11 +37,3 @@ class Solution:
         return ''.join(s)
 
 
-# 掉包
-class Solution:
-    def reverseWords(self, s: str) -> str:
-        s = s.split()
-        s = s[::-1]
-        start, end = 0, 0
-        # print(s)  # ['blue', 'is', 'sky', 'the']
-        return ' '.join(s)

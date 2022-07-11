@@ -14,10 +14,11 @@ class Solution:
         for i in range(len(height)):
             # 找到右侧第一个比当前元素大的  左边第一个比当前元素大的刚好在单调栈栈顶
             while stack and height[i] > height[stack[-1]]:
-                cur_height = height[stack.pop()]  # 当前元素的高度
+                # 说明积水可以在stack[-2]->i之间形成
+                cur_height = height[stack.pop()]  # 当前元素的高度    0
                 if not stack: break
-                h = min(height[i], height[stack[-1]]) - cur_height
-                w = i - stack[-1] - 1
-                res += (h * w)
+                h = min(height[i], height[stack[-1]]) - cur_height  # min 木桶原理   min(1,2)-0=1
+                w = i - stack[-1] - 1  # 2-0-1=1
+                res += (h * w)  # 0+=1*1=1
             stack.append(i)
         return res

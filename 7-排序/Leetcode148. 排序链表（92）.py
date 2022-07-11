@@ -9,33 +9,31 @@ class ListNode:
         self.val = val
         self.next = next
 class Solution:
-    def merge(self, head1, head2):
-        # 合并两个有序链表
-        dummy = ListNode(-1)
-        rear = dummy
-        p, q = head1, head2
-        while p and q:
-            if p.val <= q.val:
-                rear.next = p
-                p = p.next
-            else:
-                rear.next = q
-                q = q.next
-            rear = rear.next
-        rear.next = p if p else q
-        return dummy.next
-
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # 归并排序
-        if not head or not head.next: return head
-        # 找到链表中点  奇数找到中点   偶数找到中点前面一个数
-        slow, fast = head, head.next
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-        # 把链表切成两部分，再对这俩个部分进行排序
-        head2 = slow.next
-        slow.next = None
-        left = self.sortList(head)
-        right = self.sortList(head2)
-        return self.merge(left, right)
+        def merge(head1, head2):
+            dummy = ListNode(-1)
+            rear = dummy
+            p, q = head1, head2
+            while p and q:
+                if p.val < q.val:
+                    rear.next = p
+                    rear = rear.next
+                    p = p.next
+                else:
+                    rear.next = q
+                    rear = rear.next
+                    q = q.next
+            rear.next = p if p else q
+            return dummy.next
+        def merge_sort(head):
+            if not head or not head.next: return head
+            dummy = ListNode(-1, head)
+            slow, fast = dummy, head
+            while fast and fast.next:
+                slow = slow.next
+                fast = fast.next.next
+            head2 = slow.next
+            slow.next = None
+            left, right = merge_sort(head), merge_sort(head2)
+            return merge(left, right)
+        return merge_sort(head)

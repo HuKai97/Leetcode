@@ -6,21 +6,21 @@
 import copy
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        if len(nums) == 0: return []
-        if len(nums) == 1: return [nums]
-        def dfs(used, nums, path, res):
+        if not nums: return []
+        def dfs(path, res, used):
             if len(path) == len(nums):
                 res.append(copy.deepcopy(path))
                 return
             for i in range(len(nums)):
-                if nums[i] in used: continue
-                used.append(nums[i])
+                if used[i] == True: continue
+                used[i] = True
                 path.append(nums[i])
-                dfs(used, nums, path, res)
+                dfs(path, res, used)
                 path.pop()
-                used.pop()
-        used, path, res = [], [], []
-        dfs(used, nums, path, res)
+                used[i] = False
+        path, res = [], []
+        used = [False] * len(nums)
+        dfs(path, res, used)
         return res
 
 

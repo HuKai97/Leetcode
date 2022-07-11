@@ -13,5 +13,5 @@ class Solution:
             else:
                 if not stack: return False
                 top = stack.pop()
-                if mapp[top] != s[i]: return False
+                if mapp[top] != s[i]: return False  # 这里top不可能是 ) ] }
         return False if stack else True

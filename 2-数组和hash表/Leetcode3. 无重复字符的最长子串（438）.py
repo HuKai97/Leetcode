@@ -8,7 +8,7 @@ class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         if len(s) < 2: return len(s)
         start = 0
-        max_len = 0
+        max_len = 1
         mapp = set()
         for end in range(len(s)):
             while s[end] in mapp:

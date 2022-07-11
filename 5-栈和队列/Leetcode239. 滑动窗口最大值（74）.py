@@ -5,6 +5,7 @@ class Solution:
         # 当nums[i]比queue的队尾元素还要大  就把queue中比nums[i]小的数全部pop出去
         # 再把i加进去 保证次数queue仍是单调递减的
         # 当i-q[0]>=k时,弹出队首元素 这个元素就是当前窗口的最大值
+        if len(nums) < 2: return nums
         queue = []
         res = []
         for i in range(len(nums)):
@@ -17,7 +18,7 @@ class Solution:
             while queue and i - queue[0] + 1 > k:
                 queue.pop(0)
             # 窗口没形成就只append进queue  但是还不append进res
-            # i - 0 + 1 >= k
+            # i - 0 + 1 >= k 窗口一旦形成就append进res中
             if i + 1 >= k:
                 res.append(nums[queue[0]])
         return res

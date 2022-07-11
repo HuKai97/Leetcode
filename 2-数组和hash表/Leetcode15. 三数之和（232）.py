@@ -9,9 +9,9 @@ class Solution:
         if len(nums) < 3: return []
         nums.sort()
         res = []
-        for i in range(len(nums)):
+        for i in range(len(nums)-2):
             if nums[i] > 0: break  # 剪枝1 nums[i]>0 后面也必>0 不存在相加为0的组合
-            if nums[i] == nums[i-1] and i > 0: continue  # 剪枝 排除重复元素
+            if i > 0 and nums[i] == nums[i-1]: continue  # 剪枝 排除重复元素
             target = 0 - nums[i]
             left, right = i+1, len(nums) - 1
             while left < right:

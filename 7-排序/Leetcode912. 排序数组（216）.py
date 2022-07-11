@@ -17,7 +17,8 @@ class Solution:
             if c2 < n and tree[c2] > tree[max_index]:
                 max_index = c2
             if max_index != i:
-                tree[max_index], tree[i] = tree[i], tree[max_index]
+                # tree[max_index], tree[i] = tree[i], tree[max_index]
+                tree[i], tree[max_index] = tree[max_index], tree[i]
                 # max_index和i作了交换，所以max_index分支需要重新整理为大顶堆
                 heapify(tree, n, max_index)
         def build_heap(tree, n):   # 从parent->0节点分别进行一次堆排序 就建立了这个树的堆
@@ -32,6 +33,39 @@ class Solution:
                 heapify(tree, i, 0)   # 从根节点开始heapify 但是个数为n-1
         heap_sort(nums, len(nums))
         return nums
+
+
+
+# 2、归并排序
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+        def merge(left, right):
+            # 合并两个有序数组
+            m, n = len(left), len(right)
+            merge_arr = [0 for _ in range(m + n)]
+            # 从后往前遍历，进行合并
+            while m and n:
+                if left[m - 1] > right[n - 1]:
+                    merge_arr[m + n - 1] = left[m - 1]
+                    m -= 1
+                else:
+                    merge_arr[m + n - 1] = right[n - 1]
+                    n -= 1
+            if m:
+                merge_arr[:m] = left[:m]
+            if n:
+                merge_arr[:n] = right[:n]
+            return merge_arr
+
+        def merge_sort(nums):
+            if len(nums) <= 1: return nums
+            mid = len(nums) // 2
+            left = merge_sort(nums[:mid])
+            right = merge_sort(nums[mid:])
+            return merge(left, right)
+
+        return merge_sort(nums)
+
 
 # 2、快排  超时了  为什么？？？
 class Solution:

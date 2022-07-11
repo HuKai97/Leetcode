@@ -22,4 +22,5 @@ class Solution:
             i -= 1
             j -= 1
         # 从后往前append的 所以要-1
+        # ['1', '3', '4'] -> '134'
         return ''.join(res[::-1])
